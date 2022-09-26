@@ -1,6 +1,18 @@
 package com.craftinginterpreters.lox;
 
 import java.util.List;
+// import java.util.ArrayList;
+// import java.util.HashMap;
+// import java.util.Map;
+
+import com.craftinginterpreters.lox.Expr.Call;
+import com.craftinginterpreters.lox.Expr.Get;
+import com.craftinginterpreters.lox.Expr.Set;
+import com.craftinginterpreters.lox.Expr.Super;
+import com.craftinginterpreters.lox.Expr.This;
+import com.craftinginterpreters.lox.Stmt.Class;
+import com.craftinginterpreters.lox.Stmt.Function;
+import com.craftinginterpreters.lox.Stmt.Return;
 
 class Interpreter implements Expr.Visitor<Object>, Stmt.Visitor<Void> {
 
@@ -59,6 +71,8 @@ class Interpreter implements Expr.Visitor<Object>, Stmt.Visitor<Void> {
   private boolean isTruthy(Object object) {
     if (object == null) return false;
     if (object instanceof Boolean) return (boolean)object;
+    if (object instanceof Double && (Double)object == 0) return true;
+    if (object instanceof Double && (Double)object != 0) return false;
     return true;
   }
 
@@ -70,7 +84,7 @@ class Interpreter implements Expr.Visitor<Object>, Stmt.Visitor<Void> {
   }
 
   private String stringify(Object object) {
-    if (object == null) return "nil";visitexp
+    if (object == null) return "nil";
 
     if (object instanceof Double) {
       String text = object.toString();
@@ -228,6 +242,54 @@ class Interpreter implements Expr.Visitor<Object>, Stmt.Visitor<Void> {
     } catch (RuntimeError error) {
       Lox.runtimeError(error);
     }
+  }
+
+  @Override
+  public Void visitClassStmt(Class stmt) {
+    // TODO Auto-generated method stub
+    return null;
+  }
+
+  @Override
+  public Void visitFunctionStmt(Function stmt) {
+    // TODO Auto-generated method stub
+    return null;
+  }
+
+  @Override
+  public Void visitReturnStmt(Return stmt) {
+    // TODO Auto-generated method stub
+    return null;
+  }
+
+  @Override
+  public Object visitCallExpr(Call expr) {
+    // TODO Auto-generated method stub
+    return null;
+  }
+
+  @Override
+  public Object visitGetExpr(Get expr) {
+    // TODO Auto-generated method stub
+    return null;
+  }
+
+  @Override
+  public Object visitSetExpr(Set expr) {
+    // TODO Auto-generated method stub
+    return null;
+  }
+
+  @Override
+  public Object visitSuperExpr(Super expr) {
+    // TODO Auto-generated method stub
+    return null;
+  }
+
+  @Override
+  public Object visitThisExpr(This expr) {
+    // TODO Auto-generated method stub
+    return null;
   }
 
 
