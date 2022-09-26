@@ -1,0 +1,30 @@
+# Interpreter Implementation Lab 1
+
+## Members
+- Bautista, Jose Luis 
+- Alcibar, Elijah Kieran
+- Villamor, Stephen
+
+## Functionality
+The group chose to implement set 1.
+
+### Do-while loop
+```
+var x = 0;
+do {
+    print x + 1;
+    print x;
+} while(x < 10)
+```
+
+### Support the bang operator for numbers.
+```
+print !0;
+var x = 1;
+print !x;
+```
+
+### Implement “ASMD”
+```
+print 5 * 5 + 5;
+```
