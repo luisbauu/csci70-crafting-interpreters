@@ -14,6 +14,7 @@ abstract class Stmt {
     R visitReturnStmt(Return stmt);
     R visitVarStmt(Var stmt);
     R visitWhileStmt(While stmt);
+    R visitDoWhileStmt(DoWhile doWhile);
   }
 
   // Nested Stmt classes here...
@@ -157,6 +158,24 @@ abstract class Stmt {
     @Override
     <R> R accept(Visitor<R> visitor) {
       return visitor.visitWhileStmt(this);
+    }
+
+    final Expr condition;
+    final Stmt body;
+  }
+//< stmt-while
+
+//> stmt-while
+static class DoWhile extends Stmt {
+    DoWhile(Expr condition, Stmt body) {
+      this.condition = condition;
+      this.body = body;
+    }
+
+    @Override
+    <R> R accept(Visitor<R> visitor) {
+        System.out.println("STMT reached");
+      return visitor.visitDoWhileStmt(this);
     }
 
     final Expr condition;

@@ -11,6 +11,7 @@ import com.craftinginterpreters.lox.Expr.Set;
 import com.craftinginterpreters.lox.Expr.Super;
 import com.craftinginterpreters.lox.Expr.This;
 import com.craftinginterpreters.lox.Stmt.Class;
+import com.craftinginterpreters.lox.Stmt.DoWhile;
 import com.craftinginterpreters.lox.Stmt.Function;
 import com.craftinginterpreters.lox.Stmt.Return;
 
@@ -173,6 +174,15 @@ class Interpreter implements Expr.Visitor<Object>, Stmt.Visitor<Void> {
   }
 
   @Override
+  public Void visitDoWhileStmt(Stmt.DoWhile stmt) {
+    System.out.println("Hello World!");
+    do{
+      execute(stmt.body);
+    }while(isTruthy(evaluate(stmt.condition)));
+    return null;
+  }
+
+  @Override
   public Object visitAssignExpr(Expr.Assign expr) {
     Object value = evaluate(expr.value);
     environment.assign(expr.name, value);
@@ -291,6 +301,4 @@ class Interpreter implements Expr.Visitor<Object>, Stmt.Visitor<Void> {
     // TODO Auto-generated method stub
     return null;
   }
-
-
 }
