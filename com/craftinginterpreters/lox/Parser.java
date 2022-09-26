@@ -57,6 +57,7 @@ class Parser {
     if (match(IF)) return ifStatement();
     if (match(PRINT)) return printStatement();
     if (match(WHILE)) return whileStatement();
+    if (match(DOWHILE)) return doWhileStatement();
     if (match(LEFT_BRACE)) return new Stmt.Block(block());
 
     return expressionStatement();
@@ -140,6 +141,15 @@ class Parser {
     Stmt body = statement();
 
     return new Stmt.While(condition, body);
+  }
+
+  private Stmt doWhileStatement() {
+    consume(LEFT_PAREN, "Expect '(' after 'dowhile'.");
+    Expr condition = expression();
+    consume(RIGHT_PAREN, "Expect ')' after condition.");
+    Stmt body = statement();
+
+    return new Stmt.DoWhile(condition, body);
   }
 
   private Stmt expressionStatement() {
@@ -338,6 +348,7 @@ class Parser {
         case FOR:
         case IF:
         case WHILE:
+        case DOWHILE:
         case PRINT:
         case RETURN:
           return;
