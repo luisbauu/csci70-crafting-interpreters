@@ -11,10 +11,10 @@ The group chose to implement set 1.
 ### Do-while loop
 ```
 var x = 0;
-do {
+dowhile(x < 10) {
     print x + 1;
     print x;
-} while(x < 10)
+} 
 ```
 
 ### Support the bang operator for numbers.
